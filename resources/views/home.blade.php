@@ -25,6 +25,9 @@
         <div class="col-md-8">
            <p>Name: {{ $user->name }}</p>
               <p>Email: {{ $user->email }}</p>
+              {{-- {{$prescriptions->count()}} --}}
+              {{$prescriptions->count()}}
+
         </div>
 
 </div>

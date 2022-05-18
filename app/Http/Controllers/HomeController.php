@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Prescription;
+use App\Models\Patient;
 
 
 class HomeController extends Controller
@@ -27,23 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // id paramater of the url can be accessed via $id
-        // i.e like req.params.id
-        // dd($id);
-
-        // if (auth()->user()->id == $id) {
-        //     $user = User::find($id);
-        //     $profile = Profile::find($id);
-        //     return view('home', compact('user', 'profile'));
-        //     } else {
-        //     return redirect()->back();
-        // }
 
 
         $user = User::find(auth()->user()->id);
-        $profile = Profile::find(auth()->user()->id);
-        $prescriptions = Prescription::where('user_id', auth()->user()->id)->get();
-        return view('home', compact('user', 'profile'));
+       
 
     }
 }

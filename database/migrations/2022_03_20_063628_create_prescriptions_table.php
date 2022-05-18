@@ -18,17 +18,16 @@ return new class extends Migration
             $table->string('prescription_id');
             $table->string('title');
             $table->text('description');
-            $table->longText('diagnosis');
-            $table->longText('chronic_diagnosis');
-            $table->longText('acute_diagnosis');
-            $table->longText('social_history');
-            $table->longText('post_medical_history');
-            $table->longText('allergies');
-            $table->longText('drug_allergies');
-            $table->longText('food_allergies');
-            $table->longText('medication');
-            $table->longText('prescription');
-
+            $table->string('diagnosis');
+            $table->string('chronic_diagnosis');
+            $table->string('acute_diagnosis');
+            $table->string('social_history');
+            $table->string('post_medical_history');
+            $table->string('allergies');
+            $table->string('drug_allergies');
+            $table->string('food_allergies');
+            $table->string('medication');
+            $table->string('prescription');
             $table->string('status')->default("off");
             // $table->unsignedBigInteger('category_id');
             // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
