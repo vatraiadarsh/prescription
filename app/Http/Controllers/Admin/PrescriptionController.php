@@ -8,6 +8,8 @@ use App\Models\Prescription;
 use App\Models\Patient;
 use Illuminate\Support\Facades\File;
 use Illuminate\Pagination\Paginator;
+// uuid generator
+use Illuminate\Support\Str;
 
 
 class PrescriptionController extends Controller
@@ -58,22 +60,29 @@ class PrescriptionController extends Controller
     {
         // request validation
         $request->validate([
-            'name' => 'required|unique:prescriptions',
             'title' => 'required',
             'description' => 'required',
 
         ]);
 
+        $uuid = Str::uuid()->toString();
 
 
         // save to database
         $prescription = new Prescription();
-        $prescription->name = $request->input('name');
+        $prescription->prescription_id = $uuid;
         $prescription->title = $request->input('title');
         $prescription->description = $request->input('description');
-
-
-
+        $prescription->diagnosis = $request->input('diagnosis');
+        $prescription->chronic_diagnosis = $request->input('chronic_diagnosis');
+        $prescription->acute_diagnosis = $request->input('acute_diagnosis');
+        $prescription->social_history = $request->input('social_history');
+        $prescription->post_medical_history = $request->input('post_medical_history');
+        $prescription->allergies = $request->input('allergies');
+        $prescription->drug_allergies = $request->input('drug_allergies');
+        $prescription->food_allergies = $request->input('food_allergies');
+        $prescription->medication = $request->input('medication');
+        $prescription->prescription = $request->input('prescription');
         $prescription->save();
 
 
@@ -130,9 +139,19 @@ class PrescriptionController extends Controller
     public function update(Request $request, $id)
     {
         $prescription = Prescription::findOrFail($id);
-        $prescription->name = $request->input('name');
         $prescription->title = $request->input('title');
         $prescription->description = $request->input('description');
+        $prescription->diagnosis = $request->input('diagnosis');
+        $prescription->chronic_diagnosis = $request->input('chronic_diagnosis');
+        $prescription->acute_diagnosis = $request->input('acute_diagnosis');
+        $prescription->social_history = $request->input('social_history');
+        $prescription->post_medical_history = $request->input('post_medical_history');
+        $prescription->allergies = $request->input('allergies');
+        $prescription->drug_allergies = $request->input('drug_allergies');
+        $prescription->food_allergies = $request->input('food_allergies');
+        $prescription->medication = $request->input('medication');
+        $prescription->prescription = $request->input('prescription');
+
 
         if($request->has('status')){
             $prescription->status = $request->input('status');

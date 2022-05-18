@@ -22,15 +22,15 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
 
                 @if (Auth::check() && Auth::user()->is_admin)
                 <a style="color: rgb(138, 67, 67)" class="navbar-brand" href="{{ url('/admin') }}">
                     Admin panel
                 </a>
-                <a class="navbar-brand" href="{{ url('/admin/category') }}">
-                   Categories
+                <a class="navbar-brand" href="{{ url('/admin') }}">
+                   Dashboard
                 </a>
 
                 @else

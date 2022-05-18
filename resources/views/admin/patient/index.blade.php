@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Category</h1>
+        <h1 class="h2">patient</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <form action="{{ route('patient.index') }}" method="get">
                 <div class="input-group">
@@ -17,8 +17,8 @@
         </div>
 
         <div class="btn-toolbar mb-2 mb-md-0">
-            <a type="button" data-bs-toggle="modal" data-bs-target="#addCategory" class="btn btn-sm btn-secondary">
-                Add Category
+            <a type="button" data-bs-toggle="modal" data-bs-target="#addPatient" class="btn btn-sm btn-secondary">
+                Add Patient
                 <span data-feather="plus-square"></span>
             </a>
         </div>
@@ -92,7 +92,7 @@
     </table>
 
 
-    <div class="modal fade py-5" id="addCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade py-5" id="addPatient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-5 shadow">
@@ -121,7 +121,7 @@
                             @enderror
                         </div>
 
-                       
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
