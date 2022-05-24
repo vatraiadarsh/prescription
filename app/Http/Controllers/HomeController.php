@@ -31,7 +31,13 @@ class HomeController extends Controller
 
 
         $user = User::find(auth()->user()->id);
-       
+        // get 7 prescriptions
+        $p = Prescription::all();
+        // get only the last 7 prescriptions
+        $prescriptions = $p->take(7);
+        $patients = Patient::all();
+        return view('home', compact('user', 'prescriptions', 'patients'));
 
     }
 }
+

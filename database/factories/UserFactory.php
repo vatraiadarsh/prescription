@@ -26,10 +26,13 @@ class UserFactory extends Factory
         // ];
         return [
             'name' => $this->faker->name(),
-            'email' => 'unique@gmail.com',
-            'is_admin' => true,
+            'email' => $this->faker->unique()->safeEmail(),
+            'is_admin' => false,
+            'is_user' => true,
+            'is_pharmacist' => false,
             'email_verified_at' => now(),
-            'password' => 'appleapple', // password
+            // generate random password
+           'password' => bcrypt('secret'),
             'remember_token' => Str::random(10),
         ];
 

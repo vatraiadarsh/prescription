@@ -11,6 +11,13 @@ class Prescription extends Model
 
     protected $table = 'prescriptions';
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
     public function patients(){
         return $this->belongsToMany('App\Models\Patient', 'patient_prescription');
     }

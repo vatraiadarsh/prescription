@@ -61,17 +61,46 @@
                             </a>
                         </li>
 
+                        <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Prescriptions</span>
+                        <a class="link-secondary" href="#" aria-label="Add a new report">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+
                         <li class="nav-item">
                             <a class="nav-link {{ Request::path() === "admin/prescription" ? 'active' : '' }}" href="/admin/prescription">
                                 <span data-feather="shopping-cart"></span> prescription
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::path() === "admin/prescriptionform" ? 'active' : '' }}" href="/admin/prescriptionform">
+                                <span data-feather="shopping-cart"></span> prescription Form
+                            </a>
+                        </li>
+
 
                     </ul>
 
+                    {{-- only pharmacities can access it --}}
+                    @if(Auth::user()->is_pharmacist == '1')
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::path() === "admin/pharmacist" ? 'active' : '' }}" href="/admin/pharmacist">
+                                <span data-feather="shopping-cart"></span> pharmacy
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
+
+
+
+
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
+                        <span>User Profiles</span>
                         <a class="link-secondary" href="#" aria-label="Add a new report">
                             <span data-feather="plus-circle"></span>
                         </a>

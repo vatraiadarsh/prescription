@@ -46,6 +46,7 @@
         <tr>
             <th>ID</th>
             <th>Prescription Id</th>
+            <th>Qr code</th>
             <th>Prescription title</th>
             <th>patient</th>
             <th>Description</th>
@@ -61,12 +62,15 @@
             <th>Prescription</th>
             <th>Status</th>
             <th>Action</th>
-            <th></th>
+
         </tr>
+
         @foreach ($prescriptions as $prescription)
             <tr>
                 <td>{{ $prescription->id }}</td>
                 <td>{{ $prescription->prescription_id }}</td>
+                {{-- qr code to generate prescription id --}}
+                <td>{!! QrCode::size(100)->generate($prescription->prescription_id) !!}</td>
                 <td>{{ $prescription->title }}</td>
                 <td>
                     @foreach ($prescription->patients as $patient)
@@ -107,6 +111,7 @@
         @endforeach
 
 
+{{ $prescriptions->links() }}
 
     </table>
 </div>
@@ -253,7 +258,7 @@
     </div>
 
 </div>
-{{ $prescriptions->onEachSide(1)->links() }}
 
 
 @endsection
+

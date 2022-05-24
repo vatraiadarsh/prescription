@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use Illuminate\Support\Facades\File;
 use Illuminate\Pagination\Paginator;
+// patient form request validation
+use App\Http\Requests\PatientRequest;
 
 
 class PatientController extends Controller
@@ -18,14 +20,15 @@ class PatientController extends Controller
      */
     public function index()
     {
+
+        // After refactoring the code we can search the patient by just entering the half name
         $search = request()->query('s');
 
         if ($search) {
             $patients = Patient::where('name', 'LIKE', "%{$search}%")
-            ->orWhere('description', 'LIKE', "%{$search}%")
-            ->paginate(2);
+            ->paginate(10);
         }else{
-           $patients = Patient::paginate(3);
+           $patients = Patient::paginate(10);
         }
 
         return view('admin.patient.index', [
@@ -40,17 +43,9 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // Patient form request validation
+    public function store(PatientRequest $request)
     {
-        // validate all the incomming requests
-        $request->validate([
-            'name' => 'required|unique:patients',
-            'description' => 'required',
-
-        ]);
-
-
-
         // save to database
         $patient = new Patient();
         $patient->name = $request->input('name');
@@ -86,7 +81,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PatientRequest $request, $id)
     {
         $patient = Patient::findOrFail($id);
         $patient->name = $request->input('name');

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Pagination\Paginator;
 // uuid generator
 use Illuminate\Support\Str;
+// qr code generator
 
 
 class PrescriptionController extends Controller
@@ -24,12 +25,24 @@ class PrescriptionController extends Controller
         // search and return view
         $search = request()->query('s');
         if ($search) {
-            $prescriptions = Prescription::where('name', 'LIKE', "%{$search}%")
+            $prescriptions = Prescription::where('prescription_id', 'LIKE', "%{$search}%")
             ->orWhere('title', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
-            ->paginate(2);
+            ->orWhere('diagnosis', 'LIKE', "%{$search}%")
+            ->orWhere('chronic_diagnosis', 'LIKE', "%{$search}%")
+            ->orWhere('acute_diagnosis', 'LIKE', "%{$search}%")
+            ->orWhere('social_history', 'LIKE', "%{$search}%")
+            ->orWhere('post_medical_history', 'LIKE', "%{$search}%")
+            ->orWhere('allergies', 'LIKE', "%{$search}%")
+            ->orWhere('drug_allergies', 'LIKE', "%{$search}%")
+            ->orWhere('food_allergies', 'LIKE', "%{$search}%")
+            ->orWhere('medication', 'LIKE', "%{$search}%")
+            ->orWhere('prescription', 'LIKE', "%{$search}%")
+
+            ->paginate(10);
         }else{
-            $prescriptions = Prescription::paginate(3);
+            $prescriptions = Prescription::paginate(10);
+
         }
 
         return view('admin.prescription.index', [
